@@ -3,82 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="/hu/assets/js/lang.js"></script>
 <script>
     var defaultLang = "en"
     var supported_languages = []
     supported_languages.push("en")
     supported_languages.push("hu")
-    
-    function javaSplit(s, separator, limit) {
-        var arr = s.split(separator, limit);
-        var left = s.substring(arr.join(separator).length + separator.length);
-        arr.push(left);
-        return arr;
-    }
-    function getDataFromUrl() {
-        var originLocation = window.location.origin + "/"
-        var actLocation = window.location.href
-        var locWithoutOrigin = actLocation.replace(originLocation, "")
-        if (locWithoutOrigin == "") {
-            return ["", ""]
-        } else {
-            var javaSplitted = javaSplit(locWithoutOrigin, "/", 1)
-            var splitted = []
-            splitted.push(javaSplitted[0])
-            if (javaSplitted[1] != "") {
-                splitted.push(javaSplitted[1])
-            }
-            var firstPart = splitted[0]
-            var remaining = ""
-            if (splitted.length == 1) {
-                if (supported_languages.includes(firstPart)) {
-                    return [firstPart, remaining]
-                } else { 
-                    return ["", firstPart]
-                }
-            } else if (splitted.length == 2) {
-                remaining = splitted[1]
-                if (supported_languages.includes(firstPart)) {
-                    return [firstPart, remaining]
-                } else {
-                    return ["", firstPart + "/" + remaining]
-                }
-            }
-        }
-    }
-    function getBestSuitableSupportedLang(lang, locale, supported) {
-        var supported_lang = supported.shift();
-  
-        if (supported.includes(lang + "-" + locale)) {
-            supported_lang = lang + "-" + locale;
-        } else if (supported.includes(lang)) {
-            supported_lang = lang;
-        }
-        return supported_lang;
-    }
-    var [lang, locale] = (((navigator.userLanguage || navigator.language).replace('-', '_')).toLowerCase()).split('_');
-    var current_lang = 'hu';
-    var data_from_url = getDataFromUrl()
-    var selected_lang_from_url = data_from_url[0]
-    var remaining_from_url = data_from_url[1]
-    var suitable_lang = getBestSuitableSupportedLang(lang, locale, supported_languages)
-    if (selected_lang_from_url != "") {
-        // do nothing
-    } else {
-        var hostname = window.location.hostname;
-        var referrer = document.referrer;
-        var landingPage = !referrer || referrer.indexOf(hostname) == -1;
-        if (landingPage && (current_lang !== suitable_lang)) {
-            if (remaining_from_url === "") {
-                window.location = '/' + suitable_lang + '/';
-            } else {
-                window.location = '/' + suitable_lang + '/' + remaining_from_url;
-            }
-        }
-        //if (current_lang !== suitable_lang) {
-        //    window.location = '/' + suitable_lang + '/';
-        //}
-    } 
+    loadLang(supported_languages, defaultLang)
 </script>
 
 <link rel="icon" href="/hu/assets/images/logo.png">
@@ -101,6 +32,12 @@
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css">
+
+<link rel="stylesheet" href="https://mojoaxel.github.io/bootstrap-select-country/dist/css/bootstrap-select-country.min.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
     
 <link href="/hu/assets/css/screen.css" rel="stylesheet">
 
@@ -164,10 +101,6 @@
                 <a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mediumish-ghost/"><i class="fab fa-snapchat-ghost"></i> Ghost Version</a>
                 </li>
 
-                <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://github.com/wowthemesnet/mediumish-theme-jekyll"><i class="fab fa-github"></i> Fork on Github</a>
-                </li>
-
                 <script src="/hu/assets/js/lunr.js"></script>
 
 
@@ -191,6 +124,16 @@
 <script src="/hu/assets/js/lunrsearchengine.js"></script>
 
             </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="" id="dropdown-lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-gb"> </span> English</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown-lang">
+            <a class="dropdown-item" href=""><span class="flag-icon flag-icon-gb"> </span>  English</a>
+            <a class="dropdown-item" href=""><span class="flag-icon flag-icon-hu"> </span>  Magyar</a>
+        </div>
+    </li>
+</ul>
 
         <!-- End Menu -->
 
@@ -288,6 +231,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+
+<script src="https://mojoaxel.github.io/bootstrap-select-country/dist/js/bootstrap-select-country.min.js"></script>
 
 <script src="/hu/assets/js/mediumish.js"></script>
 

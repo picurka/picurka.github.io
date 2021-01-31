@@ -129,11 +129,20 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" id="dropdown-lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-gb"> </span> English</a>
         <div class="dropdown-menu" aria-labelledby="dropdown-lang">
-            <a class="dropdown-item" href=""><span class="flag-icon flag-icon-gb"> </span>  English</a>
-            <a class="dropdown-item" href=""><span class="flag-icon flag-icon-hu"> </span>  Magyar</a>
+            
+            <a id="dropdown-lang-en" class="dropdown-item" href=""><span class="flag-icon flag-icon-gb"> </span>  English</a>
+            
+            <a id="dropdown-lang-hu" class="dropdown-item" href=""><span class="flag-icon flag-icon-hu"> </span>  Magyar</a>
+            
         </div>
     </li>
 </ul>
+
+<script>
+    jQuery(document).ready(function($){
+        $("#dropdown-lang").html('<span class="flag-icon flag-icon-hu"> </span> Magyar')
+    })
+</script>
 
         <!-- End Menu -->
 

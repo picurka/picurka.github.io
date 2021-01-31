@@ -43,6 +43,8 @@
 
 <link href="/assets/css/main.css" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" type="text/css" />
+
 <script src="/assets/js/jquery.min.js"></script>
 
 </head>
@@ -207,28 +209,6 @@
     </div>
 
     
-
-    <div id="comments" class="row mb-5">
-        <div class="col-md-8">
-            <section class="disqus">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_shortname = 'demowebsite'; 
-        var disqus_developer = 0;
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</section>
-
-        </div>
-    </div>
-
-    
 </section>
 </div>
 
@@ -286,6 +266,24 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                  "background": "#000"
+            },
+            "button": {
+                  "background": "#f1d600"
+            }
+        },
+        "type": "opt-in",
+        "content": {
+            "message": "This website uses cookies to ensure you get the best experience here.",
+            "href": "/terms"
+        }
+    });
+</script>
 </footer>
 <!-- End Footer
 ================================================== -->

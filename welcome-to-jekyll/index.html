@@ -3,6 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+    var defaultLang = "en"
+    var supported_languages = []
+    supported_languages.push("en")
+    supported_languages.push("hu")
+    function getSelectedLangFromUrl() {
+        var originLocation = window.location.origin + "/"
+        var actLocation = window.location.href
+        var locWithoutOrigin = actLocation.replace(originLocation, "")
+        if (locWithoutOrigin == "") {
+            return ""
+        } else {
+            var splitted = locWithoutOrigin.split("/")
+            var actLang = splitted[0]
+            if (supported_languages.includes(actLang)) {
+                return actLang
+            } else {
+                return ""
+            }
+        }
+
+    }
+    function getBestSuitableSupportedLang(lang, locale, supported) {
+        var supported_lang = supported.shift();
+  
+        if (supported.includes(lang + "-" + locale)) {
+            supported_lang = lang + "-" + locale;
+        } else if (supported.includes(lang)) {
+            supported_lang = lang;
+        }
+        return supported_lang;
+    }
+    var [lang, locale] = (((navigator.userLanguage || navigator.language).replace('-', '_')).toLowerCase()).split('_');
+    var current_lang = 'en';
+    var selected_lang_from_url = getSelectedLangFromUrl()
+    var suitable_lang = getBestSuitableSupportedLang(lang, locale, supported_languages)
+    if (selected_lang_from_url != "") {
+        // do nothing
+    } else {
+        var hostname = window.location.hostname;
+        var referrer = document.referrer;
+        var landingPage = !referrer || referrer.indexOf(hostname) == -1;
+        if (landingPage && (current_lang !== suitable_lang)) {
+            window.location = '/' + suitable_lang + '/';
+        }
+        //if (current_lang !== suitable_lang) {
+        //    window.location = '/' + suitable_lang + '/';
+        //}
+    } 
+</script>
 
 <link rel="icon" href="/assets/images/logo.png">
 
@@ -49,7 +99,6 @@
 <!-- Begin Menu Navigation
 ================================================== -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-
     <div class="container pr-0">
 
     <!-- Begin Logo -->

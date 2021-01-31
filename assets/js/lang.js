@@ -1,4 +1,4 @@
-function loadLang(supported_languages, defaultLang) {
+function loadLang(supported_languages, default_lang, site_lang) {
     function javaSplit(s, separator, limit) {
         var arr = s.split(separator, limit);
         var left = s.substring(arr.join(separator).length + separator.length);
@@ -47,7 +47,6 @@ function loadLang(supported_languages, defaultLang) {
         return supported_lang;
     }
     var [lang, locale] = (((navigator.userLanguage || navigator.language).replace('-', '_')).toLowerCase()).split('_');
-    var current_lang = '{{ site.lang }}';
     var data_from_url = getDataFromUrl()
     var selected_lang_from_url = data_from_url[0]
     var remaining_from_url = data_from_url[1]
@@ -58,7 +57,7 @@ function loadLang(supported_languages, defaultLang) {
         var hostname = window.location.hostname;
         var referrer = document.referrer;
         var landingPage = !referrer || referrer.indexOf(hostname) == -1;
-        if (landingPage && (current_lang !== suitable_lang)) {
+        if (landingPage && (site_lang !== suitable_lang)) {
             if (remaining_from_url === "") {
                 window.location = '/' + suitable_lang + '/';
             } else {

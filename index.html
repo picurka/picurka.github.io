@@ -12,7 +12,7 @@
 <title>Home | Picurka</title>
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Home" />
-<meta property="og:locale" content="en" />
+<meta property="og:locale" content="hu" />
 <meta name="description" content="Jekyll template, Medium styled, free for bloggers." />
 <meta property="og:description" content="Jekyll template, Medium styled, free for bloggers." />
 <meta property="og:site_name" content="Picurka" />
@@ -145,6 +145,56 @@
 
 <!-- Featured
 ================================================== -->
+<html lang="hu"></html>
+<script>
+    var defaultLang = "hu"
+    var supported_languages = ["hu", "en"]
+    function getActualLang() {
+        var originLocation = window.location.origin + "/"
+        var actLocation = window.location.href
+        var locWithoutOrigin = actLocation.replace(originLocation, "")
+        if (locWithoutOrigin == "") {
+            return defaultLang
+        } else {
+            var splitted = locWithoutOrigin.split("/")
+            var actLang = splitted[0]
+            if (supported_languages.includes(actLang)) {
+                return actLang
+            } else {
+                return defaultLang
+            }
+        }
+
+    }
+    function getBestSuitableSupportedLang(lang, locale, supported) {
+        var supported_lang = supported.shift();
+  
+        if (supported.includes(lang + "-" + locale)) {
+            supported_lang = lang + "-" + locale;
+        } else if (supported.includes(lang)) {
+            supported_lang = lang;
+        }
+        return supported_lang;
+    }
+    var [lang, locale] = (((navigator.userLanguage || navigator.language).replace('-', '_')).toLowerCase()).split('_');
+    var current_lang = 'hu';
+    var act_lang = getActualLang()
+    var suitable_lang = getBestSuitableSupportedLang(lang, locale, supported_languages)
+    if (act_lang || act_lang == defaultLang) {
+        console.log("Lang selected: " + act_lang)
+    } else {
+        console.log("Lang not selected: " + act_lang)
+        var hostname = window.location.hostname;
+        var referrer = document.referrer;
+        var landingPage = !referrer || referrer.indexOf(hostname) == -1;
+        if (landingPage && (current_lang !== suitable_lang)) {
+            window.location = '/' + suitable_lang + '/';
+        }
+        //if (current_lang !== suitable_lang) {
+        //    window.location = '/' + suitable_lang + '/';
+        //}
+    } 
+</script>
 <section class="featured-posts">
     <div class="section-title">
         <h2><span>Featured</span></h2>
@@ -188,7 +238,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title">
-                <a class="text-dark" href="/welcome-to-jekyll/">Hi to Jekyll!</a>
+                <a class="text-dark" href="/welcome-to-jekyll/">Szia Jekyll!</a>
                 
             </h2>
             <h4 class="card-text">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways,...</h4>
@@ -220,7 +270,6 @@
     
 </span>
 </div>
-
 
 </div>
 

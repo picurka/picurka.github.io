@@ -12,7 +12,7 @@
 <title>Home | Picurka</title>
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Home" />
-<meta property="og:locale" content="hu" />
+<meta property="og:locale" content="en" />
 <meta name="description" content="Jekyll template, Medium styled, free for bloggers." />
 <meta property="og:description" content="Jekyll template, Medium styled, free for bloggers." />
 <meta property="og:site_name" content="Picurka" />
@@ -145,11 +145,11 @@
 
 <!-- Featured
 ================================================== -->
-<html lang="hu"></html>
+<html lang="en"></html>
 <script>
-    var defaultLang = "hu"
-    var supported_languages = ["hu", "en"]
-    function getActualLang() {
+    var defaultLang = "en"
+    var supported_languages = ["en", "hu"]
+    function getSelectedLangFromUrl() {
         var originLocation = window.location.origin + "/"
         var actLocation = window.location.href
         var locWithoutOrigin = actLocation.replace(originLocation, "")
@@ -177,13 +177,13 @@
         return supported_lang;
     }
     var [lang, locale] = (((navigator.userLanguage || navigator.language).replace('-', '_')).toLowerCase()).split('_');
-    var current_lang = 'hu';
-    var act_lang = getActualLang()
+    var current_lang = 'en';
+    var selected_lang_from_url = getSelectedLangFromUrl()
     var suitable_lang = getBestSuitableSupportedLang(lang, locale, supported_languages)
-    if (act_lang || act_lang == defaultLang) {
-        console.log("Lang selected: " + act_lang)
+    if (selected_lang_from_url == suitable_lang) {
+        console.log("Lang selected: " + selected_lang_from_url)
     } else {
-        console.log("Lang not selected: " + act_lang)
+        console.log("Lang not selected: " + selected_lang_from_url)
         var hostname = window.location.hostname;
         var referrer = document.referrer;
         var landingPage = !referrer || referrer.indexOf(hostname) == -1;
@@ -238,7 +238,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title">
-                <a class="text-dark" href="/welcome-to-jekyll/">Szia Jekyll!</a>
+                <a class="text-dark" href="/welcome-to-jekyll/">Hi to Jekyll!</a>
                 
             </h2>
             <h4 class="card-text">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways,...</h4>

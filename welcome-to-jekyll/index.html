@@ -145,6 +145,20 @@
 <script>
     jQuery(document).ready(function($){
         $("#dropdown-lang").html('<span class="flag-icon flag-icon-gb"> </span> English')
+        $( ".dropdown-menu > a" ).click(function() {
+           var clickedAID = $(this).attr('id');
+           var langSelected = clickedAID.replace("dropdown-lang-", "");
+           localStorage.setItem("language-selected", langSelected)
+           document.cookie = 'language-selected= ' + langSelected + '; expires=Sun, 1 Jan 2099 00:00:00 UTC; path=/'
+           var defaultLang = "en"
+           if (langSelected && langSelected !== defaultLang) {
+               //alert("selected: " + location.origin + "/" + langSelected)
+               window.location.href = location.origin, true;
+           } else {
+               //alert("selected: " + location.origin)
+               window.location.href = location.origin, true;
+           }
+        });
     })
 </script>
 

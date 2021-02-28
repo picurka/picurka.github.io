@@ -152,10 +152,8 @@
            document.cookie = 'language-selected= ' + langSelected + '; expires=Sun, 1 Jan 2099 00:00:00 UTC; path=/'
            var defaultLang = "en"
            if (langSelected && langSelected !== defaultLang) {
-               //alert("selected: " + location.origin + "/" + langSelected)
                window.location.href = location.origin, true;
            } else {
-               //alert("selected: " + location.origin)
                window.location.href = location.origin, true;
            }
         });
